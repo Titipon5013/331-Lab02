@@ -3,16 +3,15 @@ import EventCard from '@/components/EventCard.vue';
 import CategoryOrganizer from '@/components/CategoryOrganizer.vue';
 import type { Event } from '@/type';
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import EventService from '@/services/EventService';
 
 
 const events = ref<Event[]>(null);
 
 onMounted( () => {
-  axios
-  .get<Event[]>('https://my-json-server.typicode.com/Titipon5013/331-Lab02-server/events')
-    .then(response => {
-      console.log(response.data);
+  EventService.getEvent()
+    .then((response) => {
+      events.value = response.data;
     })
     .catch(error => {
       console.error('There was an error!', error);
