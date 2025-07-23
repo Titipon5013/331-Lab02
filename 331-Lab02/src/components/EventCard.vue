@@ -3,8 +3,7 @@ import { ref } from 'vue'
 // defineProps<{
 //   msg: string
 // }>()
-
-import type { Event } from '@/type'
+import { type Event } from '@/types'
 defineProps<{
     event: Event
 }>()
