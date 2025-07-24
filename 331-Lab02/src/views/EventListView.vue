@@ -29,7 +29,6 @@ function updateSize(event: any) {
 
 onMounted(() => {
   watchEffect(() => {
-    events.value = null;
     EventService.getEvents(size.value, page.value)
       .then((response) => {
         events.value = response.data;
@@ -47,7 +46,7 @@ onMounted(() => {
   <div style="margin-bottom: 16px;">
     <label for="page-size">Events per page: </label>
     <select id="page-size" :value="size" @change="updateSize">
-      <option v-for="n in [2, 4, 6, 8, 10]" :key="n" :value="n">{{ n }}</option>
+      <option v-for="n in [2, 3 , 4, 6, 8, 10]" :key="n" :value="n">{{ n }}</option>
     </select>
   </div>
   <div class="events">
