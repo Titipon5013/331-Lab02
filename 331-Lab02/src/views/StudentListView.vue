@@ -25,27 +25,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Student List</h1>
-  <div v-if="error">{{ error }}</div>
-  <div v-else class="students">
+  <h1 class="text-2xl font-bold mb-4">Student List</h1>
+  <div v-if="error" class="text-red-600 font-semibold">{{ error }}</div>
+  <div v-else class="flex flex-wrap gap-4 justify-center">
     <StudentCard v-for="student in students" :key="student.id" :student="student" />
   </div>
 </template>
 
 <style scoped>
-.students {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-}
-.student-card {
-  border: 1px solid #39495c;
-  border-radius: 8px;
-  padding: 16px;
-  width: 220px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  background: #fff;
-  text-align: center;
-}
+
 </style>

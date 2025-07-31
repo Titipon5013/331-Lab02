@@ -8,56 +8,37 @@ const { messages } = storeToRefs(store)
 </script>
 
 <template>
-<div class="text-center font-sans text-gray-700 antialiased">
-  <header>
-    <div id ="flashMessage" v-if="messages">
-      <h4>{{ messages }}</h4>
+<div class="text-center font-sans text-gray-700 antialiased min-h-screen bg-gray-50">
+  <header class="shadow-md mb-6">
+    <div v-if="messages" class="animate-fade bg-yellow-300 text-black py-2 px-4 rounded mb-2 mx-auto w-fit">
+      <h4 class="font-semibold">{{ messages }}</h4>
     </div>
     <div class="wrapper">
-      <nav>
-        <RouterLink :to="{ name: 'event-list-view' }">Event</RouterLink>
-        <RouterLink :to="{ name: 'about' }">About</RouterLink>
-        <RouterLink :to="{ name: 'students' }">Student</RouterLink>
+      <nav class="flex justify-center gap-8 py-6">
+        <RouterLink class="font-bold text-gray-700 hover:text-green-500 transition-colors" exact-active-class="text-green-500" :to="{name: 'event-list-view'}">Event</RouterLink>
+        <RouterLink class="font-bold text-gray-700 hover:text-green-500 transition-colors" exact-active-class="text-green-500" :to="{name: 'about'}">About</RouterLink>
+        <RouterLink class="font-bold text-gray-700 hover:text-green-500 transition-colors" exact-active-class="text-green-500" :to="{name: 'students'}">Student</RouterLink>
       </nav>
     </div>
   </header>
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </div>
 </template>
 
 <style>
 
-nav {
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
-}
-
-nav a.router-link-active {
-  color: #42b983;
-}
-
-h2 {
-  font-size: 20px
-}
-
-@keyframes yelloFade {
+@keyframes fade {
   from {
-    background-color: yellow;
+    background-color: #fde047;
   }
   to {
     background-color: transparent;
   }
 }
-#flashMessage {
-  animation: yelloFade 3s ease-in-out;
+.animate-fade {
+  animation: fade 3s ease-in-out;
 }
 
 </style>

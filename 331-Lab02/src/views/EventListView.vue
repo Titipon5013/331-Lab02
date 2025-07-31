@@ -42,24 +42,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Events For Good</h1>
-  <div style="margin-bottom: 16px;">
-    <label for="page-size">Events per page: </label>
-    <select id="page-size" :value="size" @change="updateSize">
-      <option v-for="n in [2, 3 , 4, 6, 8, 10]" :key="n" :value="n">{{ n }}</option>
+  <h1 class="text-3xl font-bold mb-4">Events For Good</h1>
+  <div class="mb-4 flex items-center justify-center gap-2">
+    <label for="page-size" class="font-medium">Events per page:</label>
+    <select id="page-size" :value="size" @change="updateSize" class="border rounded px-2 py-1">
+      <option v-for="n in [2, 3, 4, 6, 8, 10]" :key="n" :value="n">{{ n }}</option>
     </select>
   </div>
   <div class="flex flex-col items-center">
-    <div v-for="event in events" :key="event.id" class="event-container">
+    <div v-for="event in events" :key="event.id" class="w-full max-w-xl mb-5">
       <EventCard :event="event" />
       <CategoryOrganizer :event="event" />
     </div>
-    <div class="pagination">
+    <div class="flex w-72 justify-between mt-4">
       <RouterLink
         id="page-prev"
         :to="{ name: 'event-list-view', query: { page: page - 1, size: size } }"
         rel="prev"
         v-if="page != 1"
+        class="text-left text-blue-600 hover:underline"
       >&#60; Previous Page</RouterLink>
 
       <RouterLink
@@ -67,6 +68,7 @@ onMounted(() => {
         :to="{ name: 'event-list-view', query: { page: page + 1, size: size } }"
         rel="next"
         v-if="hasNextPage"
+        class="text-right text-blue-600 hover:underline"
       >Next Page &#62;</RouterLink>
     </div>
   </div>
@@ -74,24 +76,4 @@ onMounted(() => {
 
 <style scoped>
 
-
-
-.pagination {
-  display: flex;
-  width: 290px;
-}
-
-.pagination a {
-  flex: 1;
-  text-decoration: none;
-  color: #2c3e50
-}
-
-#page-prev {
-  text-align: left;
-}
-
-#page-next {
-  text-align: right;
-}
 </style>
