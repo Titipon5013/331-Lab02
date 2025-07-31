@@ -2,12 +2,14 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useMessageStore } from '@/stores/message'
 import { storeToRefs } from 'pinia'
+import { SpeedInsights } from '@vercel/speed-insights/vue'
 
 const store = useMessageStore()
 const { messages } = storeToRefs(store)
 </script>
 
 <template>
+  <SpeedInsights />
 <div class="text-center font-sans text-gray-700 antialiased min-h-screen bg-gray-50">
   <header class="shadow-md mb-6">
     <div v-if="messages" class="animate-fade bg-yellow-300 text-black py-2 px-4 rounded mb-2 mx-auto w-fit">

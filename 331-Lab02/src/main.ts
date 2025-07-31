@@ -9,6 +9,8 @@ import 'nprogress/nprogress.css'
 import router from './router'
 
 const app = createApp(App)
+import { inject } from '@vercel/analytics'
+inject()
 
 app.use(createPinia())
 app.use(router)
