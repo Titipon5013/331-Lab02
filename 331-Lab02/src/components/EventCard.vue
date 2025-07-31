@@ -20,11 +20,20 @@ defineProps<{
 //  organizer: 'Kat Laydee'
 // })
 
+// Shows pointer cursor on hover (clickable)
+// Adds a 1px border
+// Border color: dark gray
+// Padding: 1rem (16px)
+// Width: 16rem (256px)
+// Margin-bottom: 1.5rem (24px)
+// Not standard Tailwind — likely custom, means scale 1.01 on hover
+// Also custom — adds shadow on hover
+
 </script>
 
 <template>
 <RouterLink class="event-link" :to="{ name: 'event-detail-view', params: { id: event.id } }">
-    <div class="event-card">
+    <div class="cursor-pointer border border-gray-600 p-4 w-64 mb-6 hover:scale-101 hover:shadow-sp">
         <h2>{{ event.title }}</h2>
         <span>@{{ event.time }} on {{ event.date }} </span>
     </div>
