@@ -49,7 +49,7 @@ onMounted(() => {
       <option v-for="n in [2, 3 , 4, 6, 8, 10]" :key="n" :value="n">{{ n }}</option>
     </select>
   </div>
-  <div class="events">
+  <div class="flex flex-col items-center">
     <div v-for="event in events" :key="event.id" class="event-container">
       <EventCard :event="event" />
       <CategoryOrganizer :event="event" />
@@ -73,17 +73,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.events {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.event-container {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
-}
+
 
 .pagination {
   display: flex;
