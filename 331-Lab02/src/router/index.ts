@@ -1,3 +1,5 @@
+import OrganizerListView from '@/views/OrganizerListView.vue';
+import OrganizerDetailView from '@/views/OrganizerDetailView.vue';
 import { createRouter, createWebHistory } from 'vue-router'
 import EventListView from '@/views/EventListView.vue'
 import AboutView from '../views/AboutView.vue'  
@@ -15,6 +17,17 @@ import { useEventStore } from '@/stores/event'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/organizers',
+      name: 'organizer-list',
+      component: OrganizerListView,
+    },
+    {
+      path: '/organizers/:id',
+      name: 'organizer-detail',
+      component: OrganizerDetailView,
+      props: true,
+    },
     {
       path: '/',
       name: 'event-list-view',

@@ -1,3 +1,8 @@
+export interface Organizer {
+  id: number;
+  organizationName: string;
+  address: string;
+}
 export interface Event {
   id: number;
   category: string;
@@ -6,7 +11,7 @@ export interface Event {
   location: string;
   date: string;
   time: string;
-  petsAllowed: boolean;
+  petAllowed: boolean;
   organizer: string;
 }
 
