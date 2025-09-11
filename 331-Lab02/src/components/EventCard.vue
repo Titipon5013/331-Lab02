@@ -33,9 +33,9 @@ defineProps<{
 
 <template>
 <RouterLink class="block no-underline text-green-700" :to="{ name: 'event-detail-view', params: { id: event.id } }">
-    <div class="event-card cursor-pointer border border-gray-700 p-5 w-64 mb-4 rounded-lg bg-white hover:scale-105 hover:shadow-lg transition-transform">
+    <div class="cursor-pointer border border-gray-600 p-[20px] w-[250px] mb-[18px] hover:scale-101 hover:shadow-sp">
         <h2 class="text-xl font-bold mb-1">{{ event.title }}</h2>
-        <span class="text-sm text-gray-500">@{{ event.time }} on {{ event.date }} </span>
+        <span>{{ event.category }} @ {{ event.location }}</span>
     </div>
 </RouterLink>
 </template>
