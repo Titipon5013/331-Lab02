@@ -18,11 +18,75 @@ const { messages } = storeToRefs(store)
     <h1>Deploy with Vercel</h1>
     <div class="wrapper">
       <nav class="flex justify-center gap-8 py-6">
-  <RouterLink class="font-bold text-gray-700 hover:text-green-500 transition-colors" exact-active-class="text-green-500" :to="{name: 'event-list-view'}">Event</RouterLink>
-  <RouterLink class="font-bold text-gray-700 hover:text-green-500 transition-colors" exact-active-class="text-green-500" :to="{name: 'about'}">About</RouterLink>
-  <RouterLink class="font-bold text-gray-700 hover:text-green-500 transition-colors" exact-active-class="text-green-500" :to="{name: 'students'}">Student</RouterLink>
-  <RouterLink class="font-bold text-gray-700 hover:text-green-500 transition-colors" exact-active-class="text-green-500" :to="{name: 'organizer-list'}">Organizer</RouterLink>
-      </nav>
+<RouterLink
+
+           class="font-bold text-gray-700"
+
+           exact-active-class="text-green-500"
+
+           :to="{ name: 'event-list-view' }"
+
+           >Event</RouterLink
+
+         >
+
+         |
+
+         <RouterLink
+
+           class="font-bold text-gray-700"
+
+           exact-active-class="text-green-500"
+
+           :to="{ name: 'about' }"
+
+           >About</RouterLink
+
+         >
+
+         |
+
+         <RouterLink
+
+           class="font-bold text-gray-700"
+
+           exact-active-class="text-green-500"
+
+           :to="{ name: 'add-event' }"
+
+           >New Event</RouterLink
+
+         >
+
+         |
+
+         <RouterLink
+
+           class="font-bold text-gray-700"
+
+           exact-active-class="text-green-500"
+
+           :to="{ name: 'students' }"
+
+           >Student</RouterLink
+
+         >
+
+         |
+
+         <RouterLink
+
+           class="font-bold text-gray-700"
+
+           exact-active-class="text-green-500"
+
+           :to="{ name: 'organizer-list' }"
+
+           >Organizer</RouterLink
+
+         >
+
+       </nav>
     </div>
   </header>
   <main>
