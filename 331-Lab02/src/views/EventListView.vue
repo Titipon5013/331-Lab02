@@ -10,6 +10,21 @@ const events = ref<EventType[] | null>(null);
 const totalEvents = ref(0);
 const route = useRoute();
 const router = useRouter();
+const keyword = ref('')
+function updateKeyword (value?: string) {
+  let queryFunction;
+  if (keyword.value === '') {
+    queryFunction = EventService.getEvents(size.value, page.value)
+  } else {
+    queryFunction = EventService.getEventsByKeyword(keyword.value, size.value, page.value)
+  }
+  queryFunction.then((response) => {
+    events.value = response.data
+    totalEvents.value = response.headers['x-total-count']
+  }).catch(() => {
+    router.push({ name: 'NetworkError' })
+  })
+}
 
 const page = computed(() => parseInt(route.query.page?.toString() || '1'));
 const size = computed(() => parseInt(route.query.size?.toString() || '2'));
@@ -29,14 +44,7 @@ function updateSize(event: any) {
 
 onMounted(() => {
   watchEffect(() => {
-    EventService.getEvents(size.value, page.value)
-      .then((response) => {
-        events.value = response.data;
-        totalEvents.value = response.headers['x-total-count'];
-      })
-      .catch(error => {
-        console.error('There was an error!', error);
-      })
+    updateKeyword();
   });
 });
 </script>
@@ -44,9 +52,19 @@ onMounted(() => {
 <template>
   <h1 class="text-3xl font-bold mb-4">Events For Good</h1>
   <div class="mb-4 flex items-center justify-center gap-2">
-    <label for="page-size" class="font-medium">Events per page:</label>
-    <select id="page-size" :value="size" @change="updateSize" class="border rounded px-2 py-1">
-      <option v-for="n in [2, 3, 4, 6, 8, 10]" :key="n" :value="n">{{ n }}</option>
+    <div class="w-64">
+    <input
+      v-model="keyword"
+      type="text"
+      placeholder="Search..."
+      @input="(e) => updateKeyword((e.target as HTMLInputElement).value)"
+      class="border rounded px-2 py-1 w-full"
+    />
+   </div>
+
+    <label for="page-size" class="font-medium ml-4">Events per page:</label>
+    <select id="page-size" :value="size" @change="updateSize" class="border rounded px-2 py-1 w-24 ml-2">
+      <option v-for="n in [1, 2, 3, 4, 6, 8, 10]" :key="n" :value="n">{{ n }}</option>
     </select>
   </div>
   <div class="flex flex-col items-center">
