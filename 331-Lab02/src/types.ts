@@ -2,6 +2,7 @@ export interface Organizer {
   id: number;
   organizationName: string;
   address: string;
+  images: string[];
 }
 export interface Event {
   id: number;

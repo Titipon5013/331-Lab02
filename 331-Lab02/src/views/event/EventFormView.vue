@@ -58,261 +58,127 @@ function saveEvent() {
 </script>
 
 <template>
-  <div>
-    <h1>Create an event</h1>
-     <form @submit.prevent="saveEvent">
-      <label>Category</label>
-      <input v-model="event.category" type="text" placeholder="Category" class="field" />
-      <h3>Name & describe your event</h3>
-      <label>Title</label>
-      <input v-model="event.title" type="text" placeholder="Title" class="field" />
-      <label>Description</label>
-      <input v-model="event.description" type="text" placeholder="Description" class="field" />
-      <h3>Where is your event?</h3>
-      <label>Location</label>
-      <input v-model="event.location" type="text" placeholder="Location" class="field" />
-      <label>Date</label>
-      <input v-model="event.date" type="text" placeholder="Date" class="field" />
-      <label>Time</label>
-      <input v-model="event.time" type="text" placeholder="Time" class="field" />
-      <label>Pet Allowed</label>
-      <input v-model="event.petAllowed" type="checkbox" />
-      <label>Organizer</label>
-      <input v-model="event.organizer" type="text" placeholder="Organizer" class="field" />
-      <label>Upload Images</label>
-      <ImageUpload v-model="event.images" />
-      <button class="button" type="submit">Submit</button>
+  <div class="max-w-3xl mx-auto p-6">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Create an event</h1>
+
+    <form @submit.prevent="saveEvent" class="bg-white shadow-sm ring-1 ring-gray-200 rounded-lg p-6 space-y-6">
+      <!-- Category -->
+      <div>
+        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+        <input
+          id="category"
+          v-model="event.category"
+          type="text"
+          placeholder="e.g. Tech, Music"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+        />
+      </div>
+
+      <!-- Name & describe -->
+      <div class="pt-2">
+        <h3 class="text-base font-semibold text-gray-900 mb-2">Name & describe your event</h3>
+        <div class="space-y-4">
+          <div>
+            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+            <input
+              id="title"
+              v-model="event.title"
+              type="text"
+              placeholder="Event title"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+            />
+          </div>
+          <div>
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea
+              id="description"
+              v-model="event.description"
+              rows="4"
+              placeholder="Tell people what your event is about..."
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Where is your event? -->
+      <div class="pt-2">
+        <h3 class="text-base font-semibold text-gray-900 mb-2">Where is your event?</h3>
+        <div class="space-y-4">
+          <div>
+            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+            <input
+              id="location"
+              v-model="event.location"
+              type="text"
+              placeholder="City, venue, or address"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+            />
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+              <input
+                id="date"
+                v-model="event.date"
+                type="date"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label for="time" class="block text-sm font-medium text-gray-700">Time</label>
+              <input
+                id="time"
+                v-model="event.time"
+                type="time"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Options -->
+      <div class="flex items-center gap-3">
+        <input
+          id="petAllowed"
+          v-model="event.petAllowed"
+          type="checkbox"
+          class="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+        />
+        <label for="petAllowed" class="text-sm text-gray-700">Pet allowed</label>
+      </div>
+
+      <!-- Organizer -->
+      <div>
+        <label for="organizer" class="block text-sm font-medium text-gray-700">Organizer</label>
+        <input
+          id="organizer"
+          v-model="event.organizer"
+          type="text"
+          placeholder="Organizer name"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+        />
+      </div>
+
+      <!-- Images -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Upload images</label>
+        <div class="rounded-lg border border-dashed border-gray-300 p-4">
+          <ImageUpload v-model="event.images" />
+        </div>
+        <p class="mt-1 text-xs text-gray-500">PNG/JPG recommended. Upload a few clear photos.</p>
+      </div>
+
+      <!-- Actions -->
+      <div class="pt-2">
+        <button
+          type="submit"
+          class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-white font-medium shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+        >
+          Create event
+        </button>
+      </div>
     </form>
   </div>
 </template>
-
-<style>
-b,
-strong {
-  font-weight: bolder;
-}
-small {
-  font-size: 80%;
-}
-.eyebrow {
-  font-size: 20px;
-}
-.-text-primary {
-  color: #39b982;
-}
-.-text-base {
-  color: #000;
-}
-.-text-error {
-  color: tomato;
-}
-.-text-gray {
-  color: rgba(0, 0, 0, 0.5);
-}
-.-shadow {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.13);
-}
-
-button,
-label,
-input,
-optgroup,
-select,
-textarea {
-  display: inline-flex;
-  font-family: 'Open sans', sans-serif;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-}
-button,
-input {
-  overflow: visible;
-}
-button,
-select {
-  text-transform: none;
-}
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: none;
-}
-button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
-  outline: 2px solid #39b982;
-}
-label {
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 700;
-}
-input,
-textarea {
-  box-sizing: border-box;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-}
-input.error,
-select.error {
-  margin-bottom: 0;
-}
-input + p.errorMessage {
-  margin-bottom: 24px;
-}
-textarea {
-  width: 100%;
-  overflow: auto;
-  font-size: 20px;
-}
-[type='checkbox'],
-[type='radio'] {
-  box-sizing: border-box;
-  padding: 0;
-  margin-right: 0.5rem;
-}
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
-  height: auto;
-}
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-[type='search']::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-input,
-[type='text'],
-[type='number'],
-[type='search'],
-[type='password'] {
-  height: 52px;
-  width: 100%;
-  padding: 0 10px;
-  font-size: 20px;
-}
-input,
-[type='text']:focus,
-[type='number']:focus,
-[type='search']:focus,
-[type='password']:focus {
-  border-color: #39b982;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-[hidden] {
-  display: none;
-}
-.error {
-  border: 1px solid red;
-}
-select {
-  width: 100%;
-  height: 52px;
-  padding: 0 24px 0 10px;
-  vertical-align: middle;
-  background: #fff
-    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
-    no-repeat right 12px center;
-  background-size: 8px 10px;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-  border-radius: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-select:focus {
-  border-color: #39b982;
-  outline: 0;
-}
-select:focus::ms-value {
-  color: #000;
-  background: #fff;
-}
-select::ms-expand {
-  opacity: 0;
-}
-.field {
-  margin-bottom: 24px;
-}
-.error {
-  border: 1px solid red;
-}
-.errorMessage {
-  color: red;
-}
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 52px;
-  padding: 0 40px;
-  background: transparent;
-  border: none;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: all 0.2s linear;
-}
-.button:hover {
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02);
-  box-shadow: 0 7px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.button:active {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  box-shadow: none;
-}
-.button:focus {
-  outline: 0;
-}
-.button:disabled {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  box-shadow: none;
-}
-.button + .button {
-  margin-left: 1em;
-}
-.button.-fill-gradient {
-  background: linear-gradient(to right, #16c0b0, #84cf6a);
-  color: #ffffff;
-}
-.button.-fill-gray {
-  background: rgba(0, 0, 0, 0.5);
-  color: #ffffff;
-}
-.button.-size-small {
-  height: 32px;
-}
-.button.-icon-right {
-  text-align: left;
-  padding: 0 20px;
-}
-.button.-icon-right > .icon {
-  margin-left: 10px;
-}
-.button.-icon-left {
-  text-align: right;
-  padding: 0 20px;
-}
-.button.-icon-left > .icon {
-  margin-right: 10px;
-}
-.button.-icon-center {
-  padding: 0 20px;
-}
-</style>

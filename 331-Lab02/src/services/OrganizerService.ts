@@ -16,7 +16,7 @@ export default {
   getOrganizer(id: number) {
     return apiClient.get(`/organizers/${id}`);
   },
-  createOrganizer(organizer: { organizationName: string; address: string }) {
+  createOrganizer(organizer: { organizationName: string; address: string; images?: string[] }) {
     return apiClient.post('/organizers', organizer);
   }
 };
