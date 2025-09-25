@@ -8,11 +8,13 @@ type EventData = {
   time: string;
   petAllowed: boolean;
   organizer: string;
+  images: string[];
 };
 import { ref } from 'vue'
 import EventService from '@/services/EventService'
 import { useRouter } from 'vue-router'
 import { useMessageStore } from '@/stores/message'
+import ImageUpload from '@/components/ImageUpload.vue';
 
 const event = ref<EventData>({
   category: '',
@@ -22,7 +24,8 @@ const event = ref<EventData>({
   date: '',
   time: '',
   petAllowed: false,
-  organizer: ''
+  organizer: '',
+  images: []
 });
 
 const router = useRouter()
@@ -76,6 +79,8 @@ function saveEvent() {
       <input v-model="event.petAllowed" type="checkbox" />
       <label>Organizer</label>
       <input v-model="event.organizer" type="text" placeholder="Organizer" class="field" />
+      <label>Upload Images</label>
+      <ImageUpload v-model="event.images" />
       <button class="button" type="submit">Submit</button>
     </form>
   </div>

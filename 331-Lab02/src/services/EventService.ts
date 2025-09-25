@@ -16,14 +16,21 @@ export default {
     getEvent(id: number) {
         return apiClient.get('/events/' + id);
     },
-    saveEvent(event: Event) {
-
-    return apiClient.post('/events', event)
-
+    saveEvent(event: {
+      category: string;
+      title: string;
+      description: string;
+      location: string;
+      date: string;
+      time: string;
+      petAllowed: boolean;
+      organizer: string;
+      image: string[];
+    }) {
+      return apiClient.post('/events', event)
     },
-    
-    getEventsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<EventItem[]>> {
 
-    return apiClient.get<EventItem[]>('/events?title=' + keyword + '&_limit=' + perPage + '&_page=' + page)
+    getEventsByKeyword(keyword: string, perPage: number, page: number) {
+      return apiClient.get('/events?title=' + keyword + '&_limit=' + perPage + '&_page=' + page)
     }
 }
